@@ -1,0 +1,107 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bioopt-bench"
+version = "0.1.0"
+description = "Bio-inspired Optimization Benchmark Runner"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+keywords = [
+    "optimization",
+    "genetic-algorithm",
+    "particle-swarm",
+    "ant-colony",
+    "grey-wolf",
+    "benchmark",
+    "metaheuristics"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "numpy>=1.21.0",
+    "matplotlib>=3.5.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+]
+notebook = [
+    "jupyter>=1.0.0",
+    "pandas>=1.4.0",
+]
+
+[project.scripts]
+bioopt-bench = "bioopt_bench.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/yourusername/bioopt-bench"
+Repository = "https://github.com/yourusername/bioopt-bench"
+Documentation = "https://github.com/yourusername/bioopt-bench#readme"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["bioopt_bench*"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+    | \.venv
+    | build
+    | dist
+    | \.ipynb_checkpoints
+)/
+'''
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # Pyflakes
+    "I",    # isort
+    "B",    # flake8-bugbear
+    "C4",   # flake8-comprehensions
+    "UP",   # pyupgrade
+]
+ignore = [
+    "E501",  # line too long (handled by black)
+    "B008",  # do not perform function calls in argument defaults
+]
+exclude = [
+    ".git",
+    ".venv",
+    "build",
+    "dist",
+    ".ipynb_checkpoints",
+]
+
+[tool.ruff.isort]
+known-first-party = ["bioopt_bench"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
