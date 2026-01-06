@@ -49,15 +49,11 @@ class TSPTask:
         self.graph_type = graph_type
         self.distance_matrix = self._calculate_distance_matrix()
 
-    def _generate_random(
-        self, n_cities: int, area: float
-    ) -> list[tuple[float, float]]:
+    def _generate_random(self, n_cities: int, area: float) -> list[tuple[float, float]]:
         """Generate random node positions."""
         return [(random.uniform(0, area), random.uniform(0, area)) for _ in range(n_cities)]
 
-    def _generate_grid(
-        self, grid_size: int, spacing: float
-    ) -> list[tuple[float, float]]:
+    def _generate_grid(self, grid_size: int, spacing: float) -> list[tuple[float, float]]:
         """Generate grid-based node positions."""
         nodes = []
         for i in range(grid_size):
@@ -101,7 +97,4 @@ class TSPTask:
 
     def get_nodes_as_dict(self) -> list[dict[str, Any]]:
         """Get nodes as list of dicts for serialization."""
-        return [
-            {"index": i, "x": x, "y": y}
-            for i, (x, y) in enumerate(self.nodes)
-        ]
+        return [{"index": i, "x": x, "y": y} for i, (x, y) in enumerate(self.nodes)]

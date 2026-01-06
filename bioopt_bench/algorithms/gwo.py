@@ -172,9 +172,7 @@ class GreyWolfOptimizer:
         n_dims = len(bounds)
 
         # Initialize population
-        population = np.random.uniform(
-            bounds[:, 0], bounds[:, 1], size=(n_wolves, n_dims)
-        )
+        population = np.random.uniform(bounds[:, 0], bounds[:, 1], size=(n_wolves, n_dims))
 
         # Evaluate and sort
         fitness = np.array([task.evaluate(x) for x in population])

@@ -131,7 +131,10 @@ class SchedulingTask:
 
             # Check classroom conflict
             classroom_name = classroom["name"]
-            if classroom_name in classroom_schedule and time_slot in classroom_schedule[classroom_name]:
+            if (
+                classroom_name in classroom_schedule
+                and time_slot in classroom_schedule[classroom_name]
+            ):
                 penalty += 5
             else:
                 classroom_schedule.setdefault(classroom_name, []).append(time_slot)
@@ -173,32 +176,30 @@ class SchedulingTask:
                     f"Professor {professor} unavailable at {time_slot} for {course_name}"
                 )
             else:
-                if professor in professor_schedule and time_slot_idx in professor_schedule[professor]:
-                    conflicts.append(
-                        f"Professor {professor} has multiple courses at {time_slot}"
-                    )
+                if (
+                    professor in professor_schedule
+                    and time_slot_idx in professor_schedule[professor]
+                ):
+                    conflicts.append(f"Professor {professor} has multiple courses at {time_slot}")
                 else:
                     professor_schedule.setdefault(professor, []).append(time_slot_idx)
 
             # Classroom capacity
             if students > classroom["capacity"]:
-                conflicts.append(
-                    f"Classroom {classroom['name']} overcapacity for {course_name}"
-                )
+                conflicts.append(f"Classroom {classroom['name']} overcapacity for {course_name}")
 
             # Classroom conflict
-            if classroom["name"] in classroom_schedule and time_slot_idx in classroom_schedule[classroom["name"]]:
-                conflicts.append(
-                    f"Classroom {classroom['name']} double-booked at {time_slot}"
-                )
+            if (
+                classroom["name"] in classroom_schedule
+                and time_slot_idx in classroom_schedule[classroom["name"]]
+            ):
+                conflicts.append(f"Classroom {classroom['name']} double-booked at {time_slot}")
             else:
                 classroom_schedule.setdefault(classroom["name"], []).append(time_slot_idx)
 
             # Student conflict
             if time_slot_idx in student_schedule:
-                conflicts.append(
-                    f"Students have multiple courses at {time_slot}"
-                )
+                conflicts.append(f"Students have multiple courses at {time_slot}")
             else:
                 student_schedule[time_slot_idx] = course_name
 
@@ -215,12 +216,14 @@ class SchedulingTask:
         """
         formatted = []
         for assignment in solution:
-            formatted.append({
-                "course": assignment["course"],
-                "professor": assignment["professor"],
-                "time_slot": self.time_slots[assignment["time_slot"]],
-                "classroom": self.classrooms[assignment["classroom"]]["name"],
-            })
+            formatted.append(
+                {
+                    "course": assignment["course"],
+                    "professor": assignment["professor"],
+                    "time_slot": self.time_slots[assignment["time_slot"]],
+                    "classroom": self.classrooms[assignment["classroom"]]["name"],
+                }
+            )
         return formatted
 
     def get_config(self) -> dict[str, Any]:

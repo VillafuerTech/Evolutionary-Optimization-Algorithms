@@ -20,20 +20,24 @@ class TestSchedulingTask:
         # Create a simple schedule with one course per time slot
         solution = []
         for i, course in enumerate(task.courses[:7]):
-            solution.append({
-                "course": course["name"],
-                "professor": course["professor"],
-                "time_slot": i,
-                "classroom": i % task.n_classrooms,
-            })
+            solution.append(
+                {
+                    "course": course["name"],
+                    "professor": course["professor"],
+                    "time_slot": i,
+                    "classroom": i % task.n_classrooms,
+                }
+            )
         # Add remaining courses with potential conflicts
         for i, course in enumerate(task.courses[7:]):
-            solution.append({
-                "course": course["name"],
-                "professor": course["professor"],
-                "time_slot": i,
-                "classroom": (i + 1) % task.n_classrooms,
-            })
+            solution.append(
+                {
+                    "course": course["name"],
+                    "professor": course["professor"],
+                    "time_slot": i,
+                    "classroom": (i + 1) % task.n_classrooms,
+                }
+            )
 
         # Should have some penalty but be evaluable
         fitness = task.evaluate(solution)
@@ -45,12 +49,14 @@ class TestSchedulingTask:
         # Create schedule with obvious conflicts
         solution = []
         for course in task.courses:
-            solution.append({
-                "course": course["name"],
-                "professor": course["professor"],
-                "time_slot": 0,  # All at same time
-                "classroom": 0,  # All in same room
-            })
+            solution.append(
+                {
+                    "course": course["name"],
+                    "professor": course["professor"],
+                    "time_slot": 0,  # All at same time
+                    "classroom": 0,  # All in same room
+                }
+            )
 
         conflicts = task.check_conflicts(solution)
         assert len(conflicts) > 0  # Should have many conflicts

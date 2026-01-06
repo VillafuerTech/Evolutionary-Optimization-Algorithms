@@ -68,9 +68,7 @@ class GeneticAlgorithm:
         if task_type == "tsp":
             return self._run_tsp(task, iterations, pop_size, mut_rate, cross_rate, elite)
         else:
-            return self._run_continuous(
-                task, iterations, pop_size, mut_rate, elite, self.num_bits
-            )
+            return self._run_continuous(task, iterations, pop_size, mut_rate, elite, self.num_bits)
 
     def _run_continuous(
         self,
@@ -272,9 +270,7 @@ class GeneticAlgorithm:
                 individual[i], individual[j] = individual[j], individual[i]
         return individual
 
-    def _calculate_tour_distance(
-        self, tour: list, distance_matrix: list[list[float]]
-    ) -> float:
+    def _calculate_tour_distance(self, tour: list, distance_matrix: list[list[float]]) -> float:
         """Calculate total tour distance."""
         total = 0.0
         for i in range(len(tour) - 1):
@@ -288,18 +284,12 @@ class GeneticAlgorithm:
         """Convert binary string to real value."""
         max_int = 2**num_bits - 1
         integer_value = int(binary, 2)
-        real_value = value_range[0] + (integer_value / max_int) * (
-            value_range[1] - value_range[0]
-        )
+        real_value = value_range[0] + (integer_value / max_int) * (value_range[1] - value_range[0])
         return real_value
 
-    def _real_to_binary(
-        self, value: float, value_range: tuple[float, float], num_bits: int
-    ) -> str:
+    def _real_to_binary(self, value: float, value_range: tuple[float, float], num_bits: int) -> str:
         """Convert real value to binary string."""
         max_int = 2**num_bits - 1
-        normalized = int(
-            (value - value_range[0]) / (value_range[1] - value_range[0]) * max_int
-        )
+        normalized = int((value - value_range[0]) / (value_range[1] - value_range[0]) * max_int)
         normalized = max(0, min(max_int, normalized))
         return format(normalized, f"0{num_bits}b")

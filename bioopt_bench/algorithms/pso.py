@@ -64,9 +64,7 @@ class ParticleSwarmOptimization:
         n_dims = len(bounds)
 
         # Initialize particles
-        particles_x = np.random.uniform(
-            bounds[:, 0], bounds[:, 1], size=(n_particles, n_dims)
-        )
+        particles_x = np.random.uniform(bounds[:, 0], bounds[:, 1], size=(n_particles, n_dims))
         particles_v = np.random.uniform(
             0.1 * bounds[:, 0], 0.1 * bounds[:, 1], size=(n_particles, n_dims)
         )

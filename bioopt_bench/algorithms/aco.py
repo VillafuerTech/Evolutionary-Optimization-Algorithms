@@ -66,8 +66,10 @@ class AntColonyOptimization:
         # Initialize pheromone and heuristic matrices
         pheromone = [[init_pher for _ in range(n_cities)] for _ in range(n_cities)]
         heuristic = [
-            [1.0 / distance_matrix[i][j] if i != j and distance_matrix[i][j] > 0 else 0
-             for j in range(n_cities)]
+            [
+                1.0 / distance_matrix[i][j] if i != j and distance_matrix[i][j] > 0 else 0
+                for j in range(n_cities)
+            ]
             for i in range(n_cities)
         ]
 
@@ -81,9 +83,7 @@ class AntColonyOptimization:
             all_distances = []
 
             for _ in range(n_ants):
-                tour = self._construct_tour(
-                    n_cities, pheromone, heuristic, alpha, beta
-                )
+                tour = self._construct_tour(n_cities, pheromone, heuristic, alpha, beta)
                 distance = self._calculate_tour_distance(tour, distance_matrix)
                 all_tours.append(tour)
                 all_distances.append(distance)
@@ -93,9 +93,7 @@ class AntColonyOptimization:
                     best_tour = tour[:]
 
             # Update pheromones
-            self._update_pheromones(
-                pheromone, all_tours, all_distances, evap_rate, n_cities
-            )
+            self._update_pheromones(pheromone, all_tours, all_distances, evap_rate, n_cities)
 
             mean_dist = np.mean(all_distances)
             history["iter"].append(iteration)
