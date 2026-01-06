@@ -3,19 +3,18 @@
 from typing import Any
 
 from .algorithms import (
-    GeneticAlgorithm,
-    ParticleSwarmOptimization,
     AntColonyOptimization,
+    GeneticAlgorithm,
     GreyWolfOptimizer,
+    ParticleSwarmOptimization,
 )
 from .tasks import (
     BealeFunction,
     EasomFunction,
     RastriginFunction,
-    TSPTask,
     SchedulingTask,
+    TSPTask,
 )
-
 
 # Algorithm registry
 ALGORITHMS: dict[str, type] = {

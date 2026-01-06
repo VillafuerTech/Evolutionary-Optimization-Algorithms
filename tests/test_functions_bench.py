@@ -2,8 +2,8 @@
 
 import numpy as np
 
-from bioopt_bench.tasks.functions import BealeFunction, EasomFunction, RastriginFunction
 from bioopt_bench.algorithms import GeneticAlgorithm, ParticleSwarmOptimization
+from bioopt_bench.tasks.functions import BealeFunction, EasomFunction, RastriginFunction
 
 
 class TestBenchmarkFunctions:

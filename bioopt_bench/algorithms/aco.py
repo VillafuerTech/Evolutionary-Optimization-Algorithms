@@ -182,7 +182,7 @@ class AntColonyOptimization:
                     pheromone[i][j] = 1e-10
 
         # Add new pheromone
-        for tour, distance in zip(all_tours, all_distances):
+        for tour, distance in zip(all_tours, all_distances, strict=True):
             contribution = 1.0 / distance
             for i in range(len(tour) - 1):
                 a, b = tour[i], tour[i + 1]

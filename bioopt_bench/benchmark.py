@@ -5,7 +5,7 @@ from typing import Any
 
 from .common.seeding import set_seed
 from .common.types import AlgorithmConfig, BenchmarkMetrics, RunResult, TaskConfig
-from .registry import get_algorithm, get_task, get_suite
+from .registry import get_algorithm, get_suite, get_task
 from .reporting import append_to_results_csv, generate_run_id, save_run_artifacts
 
 

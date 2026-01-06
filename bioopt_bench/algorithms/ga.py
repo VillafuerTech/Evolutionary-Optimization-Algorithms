@@ -1,7 +1,7 @@
 """Genetic Algorithm implementation."""
 
 import random
-from typing import Any, Callable
+from typing import Any
 
 import numpy as np
 

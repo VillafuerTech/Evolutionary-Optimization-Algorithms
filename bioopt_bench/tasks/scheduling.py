@@ -2,7 +2,6 @@
 
 from typing import Any
 
-
 # Default demo data
 DEFAULT_COURSES = [
     {"name": "Data Structures", "professor": "Prof. Smith", "students": 25},

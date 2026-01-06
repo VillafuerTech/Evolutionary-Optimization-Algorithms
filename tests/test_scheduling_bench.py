@@ -1,7 +1,7 @@
 """Tests for scheduling benchmarks."""
 
-from bioopt_bench.tasks.scheduling import SchedulingTask
 from bioopt_bench.algorithms import GreyWolfOptimizer
+from bioopt_bench.tasks.scheduling import SchedulingTask
 
 
 class TestSchedulingTask:

@@ -1,8 +1,8 @@
 """Benchmark tasks for optimization algorithms."""
 
 from .functions import BealeFunction, EasomFunction, RastriginFunction
-from .tsp import TSPTask
 from .scheduling import SchedulingTask
+from .tsp import TSPTask
 
 __all__ = [
     "BealeFunction",

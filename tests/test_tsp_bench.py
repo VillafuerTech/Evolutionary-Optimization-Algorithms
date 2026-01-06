@@ -1,7 +1,7 @@
 """Tests for TSP benchmarks."""
 
+from bioopt_bench.algorithms import AntColonyOptimization, GeneticAlgorithm
 from bioopt_bench.tasks.tsp import TSPTask
-from bioopt_bench.algorithms import GeneticAlgorithm, AntColonyOptimization
 
 
 class TestTSPTask:
